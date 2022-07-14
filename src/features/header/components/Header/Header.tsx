@@ -56,7 +56,25 @@ export const Header: FC<HeaderProps> = () => {
                 />
               ),
             },
-            { label: 'Grid size' },
+            {
+              label: 'Grid size',
+              action: (
+                <OptionToggle
+                  options={[
+                    {
+                      label: '8',
+                    },
+                    {
+                      label: '12',
+                      active: true,
+                    },
+                    {
+                      label: '16',
+                    },
+                  ]}
+                />
+              ),
+            },
           ]}
         />
       </div>
