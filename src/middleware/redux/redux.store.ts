@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import themeSwitcher from '@/features/themeSwitcher/themeSwitcher.slice';
+// IMPORT_NEW_SLICE
 
 export const store = configureStore({
   reducer: {
     themeSwitcher,
+    // DECLARE_NEW_SLICE
   },
 });
 
