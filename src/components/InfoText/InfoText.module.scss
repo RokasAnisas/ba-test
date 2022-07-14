@@ -1,0 +1,11 @@
+@use 'src/styles/res' as res;
+
+.info-text {
+  display: inline-flex;
+  gap: 0.5ch;
+
+  strong {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
