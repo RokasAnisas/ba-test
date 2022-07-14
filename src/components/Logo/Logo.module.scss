@@ -3,7 +3,7 @@
 .logo {
   display: flex;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: res.font-size('m');
 
   &__label {
     color: res.color('foreground');
