@@ -1,8 +1,9 @@
 @use 'src/styles/res' as res;
 
 body {
-  @include res.transition([color background-color], res.duration('slow'));
+  @include res.transition([color background-color], res.duration('smooth'));
 
   color: res.color('foreground');
   background-color: res.color('background');
+  font-family: res.font-family('primary');
 }

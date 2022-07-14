@@ -56,7 +56,7 @@
         {
           "fileName": "[ModuleName].module.scss",
           "template": [
-            "@use 'src/styles/resources' as res;",
+            "@use 'src/styles/res' as res;",
             "",
             ".[module-name] {",
             "  display: flex;",

@@ -1,0 +1,18 @@
+@use 'src/styles/res' as res;
+
+.dropdown-menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: res.spacing('s');
+  list-style: none;
+  padding: res.spacing('s') 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid res.color('neutral');
+  }
+
+  &__label {
+    font-size: res.font-size('s');
+    font-weight: 700;
+  }
+}

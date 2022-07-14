@@ -1,23 +1,27 @@
 @use 'src/styles/res' as res;
 
 .button {
-  @include res.transition([background-color]);
+  @include res.transition([opacity transform]);
 
   display: flex;
   justify-content: center;
   background-color: res.color('accent');
   border: 0;
-  border-radius: 10px;
-  min-width: 4rem;
-  padding: 10px;
+  border-radius: res.radius('primary');
+  padding: res.spacing('s') res.spacing('m');
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: res.color('accent-light');
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 
   &__label {
     color: #fff;
     font-weight: 700;
+    font-size: res.font-size('s');
   }
 }

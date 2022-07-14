@@ -1,0 +1,15 @@
+@use 'src/styles/res' as res;
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+  }
+
+
+  &__body {
+    padding: res.spacing('l');
+  }
+}

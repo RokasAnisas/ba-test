@@ -1,0 +1,25 @@
+@use 'src/styles/res' as res;
+
+.info-text {
+  align-items: center;
+  display: inline-flex;
+  gap: res.spacing('xs');
+
+  &__icon {
+    color: res.color('neutral');
+    font-size: 1.2rem;
+  }
+
+  &__content {
+    color: res.color('neutral');
+    display: inline-flex;
+    font-size: res.font-size('s');
+    gap: 0.5ch;
+
+    strong {
+      color: res.color('foreground');
+      font-weight: 700;
+      text-decoration: underline;
+    }
+  }
+}

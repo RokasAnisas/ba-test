@@ -1,0 +1,11 @@
+@use 'src/styles/res' as res;
+
+.logo {
+  display: flex;
+  font-weight: 700;
+  font-size: res.font-size('m');
+
+  &__label {
+    color: res.color('foreground');
+  }
+}

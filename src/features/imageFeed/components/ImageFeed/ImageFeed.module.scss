@@ -1,0 +1,11 @@
+@use 'src/styles/res' as res;
+
+.image-feed {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: res.spacing('l');
+
+  @include res.if-landscape {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

@@ -1,18 +1,16 @@
 import { FC } from 'react';
 
-import { Example } from '@/features/example/components/Example';
 import { useApplyTheme } from '@/features/themeSwitcher/themeSwitcher.hooks';
-import { ThemeSwitcherButton } from '@/features/themeSwitcher/components/ThemeSwitcherButton';
+import { MainLayout } from '@/components/MainLayout';
+import { ImageFeed } from '@/features/imageFeed/components/ImageFeed';
+import { Header } from '@/features/header/components/Header';
 
-const App: FC = () => {
+export const App: FC = () => {
   useApplyTheme();
 
   return (
-    <>
-      <ThemeSwitcherButton />
-      <Example />
-    </>
+    <MainLayout header={<Header />}>
+      <ImageFeed />
+    </MainLayout>
   );
 };
-
-export default App;

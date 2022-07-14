@@ -1,0 +1,23 @@
+@use 'src/styles/res' as res;
+
+.header {
+  @include res.transition([color background-color], res.duration('smooth'));
+
+  align-items: center;
+  justify-content: space-between;
+  background-color: res.color('background');
+  box-shadow: res.shadow('primary');
+  display: flex;
+  padding: res.spacing('s') res.spacing('l');
+  width: 100%;
+
+  &__container {
+    align-items: center;
+    display: flex;
+    gap: res.spacing('xs');
+
+    &.-right {
+      justify-content: flex-end;
+    }
+  }
+}

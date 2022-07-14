@@ -3,7 +3,7 @@
     'background': var(--color-background),
     'foreground': var(--color-foreground),
     'accent': var(--color-accent),
-    'accent-light': var(--color-accent-light),
+    'neutral': var(--color-neutral),
   );
 
   @return map-get($theme-colors, $_key);
