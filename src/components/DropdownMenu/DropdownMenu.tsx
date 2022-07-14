@@ -5,11 +5,12 @@ import { MdOutlineSettings } from 'react-icons/md';
 import { useOutsideClick } from '@/features/utility/useOutsideClick';
 
 import { DropdownMenuProps } from './DropdownMenu.props';
+import { DropdownMenuItem } from './components/DropdownMenuItem';
 
 import styles from './DropdownMenu.module.scss';
 const cx = classNames.bind(styles);
 
-export const DropdownMenu: FC<DropdownMenuProps> = () => {
+export const DropdownMenu: FC<DropdownMenuProps> = ({ items }) => {
   const className = 'dropdown-menu';
   const menuId = useId();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,6 +24,7 @@ export const DropdownMenu: FC<DropdownMenuProps> = () => {
         aria-haspopup="true"
         aria-controls={menuId}
         onClick={() => setMenuOpen(state => !state)}
+        aria-expanded={menuOpen}
       >
         <MdOutlineSettings />
       </button>
@@ -31,8 +33,13 @@ export const DropdownMenu: FC<DropdownMenuProps> = () => {
         id={menuId}
         role="menu"
       >
-        <li className={cx(`${className}__menu-item`)}>Menu item 1</li>
-        <li className={cx(`${className}__menu-item`)}>Menu item 2</li>
+        {items.map((item, i) => {
+          return (
+            <DropdownMenuItem key={i} label={item.label}>
+              {item.action}
+            </DropdownMenuItem>
+          );
+        })}
       </ul>
     </div>
   );

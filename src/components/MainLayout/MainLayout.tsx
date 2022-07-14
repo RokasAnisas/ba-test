@@ -24,7 +24,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
         <div className={cx(`${className}__header-container`, '-right')}>
           <InfoText description={en.pressSpaceToShuffleOr} />
           <Button>{en.clickHere}</Button>
-          <DropdownMenu />
+          <DropdownMenu items={[{ label: 'Grid size' }, { label: 'Theme' }]} />
         </div>
       </header>
       <main className={cx(`${className}__body`)}>{children}</main>

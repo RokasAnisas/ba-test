@@ -46,16 +46,12 @@
     transform: translateY(0);
     visibility: hidden;
     width: 12rem;
+    padding: res.spacing('m');
 
     &.is-open {
       opacity: 1;
       transform: translateY(res.spacing('s'));
       visibility: visible;
     }
-  }
-
-  &__menu-item {
-    list-style: none;
-    padding: res.spacing('s');
   }
 }
