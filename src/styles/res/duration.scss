@@ -1,0 +1,10 @@
+@function duration($_key) {
+  $duration-map: (
+    'cta': 0.15s,
+    'smooth': 0.3s,
+    'slow': 0.5s,
+    'elegant': 0.8s,
+  );
+
+  @return map-get($duration-map, $_key);
+}

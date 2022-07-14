@@ -1,0 +1,20 @@
+@import 'duration';
+
+@function transition($_list, $_duration: duration('cta')) {
+  $_new-list: ();
+
+  @each $_item in $_list {
+    @if ($_item == 'all') {
+      @warn '"all" should not be used with transition';
+    }
+    $_new-list: append($_new-list, $_item $_duration ease, comma);
+  }
+
+  @return $_new-list;
+}
+
+@mixin transition($_list, $_duration: duration('cta')) {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transition($_list, $_duration);
+  }
+}

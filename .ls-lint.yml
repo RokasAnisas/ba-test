@@ -1,0 +1,18 @@
+ls:
+  templates:
+    .json: kebab-case
+
+  src:
+    .dir: kebab-case
+    .d.ts: kebab-case
+
+    components/*:
+      .dir: pascalcase
+      .module.scss: pascalcase
+      .hooks.ts: pascalcase
+      .story.tsx: pascalcase
+      .spec.tsx: pascalcase
+      .tsx: pascalcase
+
+ignore:
+  - node_modules

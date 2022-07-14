@@ -1,0 +1,18 @@
+# distribution
+dist/
+
+# node
+node_modules/
+yarn-error.log
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# test
+coverage/
+
+# misc
+.DS_Store

@@ -1,0 +1,74 @@
+{
+  "name": "Component",
+  "description": "Generate a stateless component",
+  "add": [
+    {
+      "dirPath": "src/components/[ModuleName]",
+      "files": [
+        {
+          "fileName": "[ModuleName].tsx",
+          "template": [
+            "import { FC } from 'react';",
+            "import classNames from 'classnames/bind';",
+            "",
+            "import { [ModuleName]Props } from './[ModuleName].props';",
+            "",
+            "import styles from './[ModuleName].module.scss';",
+            "const cx = classNames.bind(styles);",
+            "",
+            "export const [ModuleName]: FC<[ModuleName]Props> = ({ children }) => {",
+            "  const className = '[module-name]';",
+            "",
+            "  return <div className={cx(className)}>{children}</div>;",
+            "};",
+            ""
+          ]
+        },
+        {
+          "fileName": "[ModuleName].props.ts",
+          "template": [
+            "import { ReactNode } from 'react';",
+            "",
+            "export interface [ModuleName]Props {",
+            "  children: ReactNode;",
+            "}",
+            ""
+          ]
+        },
+        {
+          "fileName": "[ModuleName].spec.tsx",
+          "template": [
+            "import { render } from '@/test/utils';",
+            "",
+            "import { [ModuleName] } from './[ModuleName]';",
+            "",
+            "describe('[ModuleName]', () => {",
+            "  it('Should render label', () => {",
+            "    const TEST_LABEL = 'TEST LABEL';",
+            "    const { container } = render(<[ModuleName]>{TEST_LABEL}</[ModuleName]>);",
+            "",
+            "    expect(container.firstChild?.textContent).toBe(TEST_LABEL);",
+            "  });",
+            "});",
+            ""
+          ]
+        },
+        {
+          "fileName": "[ModuleName].module.scss",
+          "template": [
+            "@use 'src/styles/resources' as res;",
+            "",
+            ".[module-name] {",
+            "  display: flex;",
+            "}",
+            ""
+          ]
+        },
+        {
+          "fileName": "index.ts",
+          "template": ["export { [ModuleName] } from './[ModuleName]';", ""]
+        }
+      ]
+    }
+  ]
+}

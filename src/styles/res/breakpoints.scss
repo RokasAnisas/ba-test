@@ -1,0 +1,11 @@
+@mixin if-landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin if-portrait {
+  @media (orientation: portrait) {
+    @content;
+  }
+}

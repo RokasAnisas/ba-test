@@ -1,0 +1,80 @@
+{
+  "name": "Feature",
+  "description": "Generate a new feature",
+  "add": [
+    {
+      "dirPath": "src/features/[moduleName]",
+      "files": [
+        {
+          "fileName": "[moduleName].hooks.ts",
+          "template": [
+            "import { useEffect } from 'react';",
+            "",
+            "export const use[ModuleName] = () => {",
+            "  useEffect(() => {",
+            "    console.log('[moduleName]');",
+            "  }, []);",
+            "};",
+            ""
+          ]
+        },
+        {
+          "fileName": "[moduleName].slice.ts",
+          "template": [
+            "import { createSlice, PayloadAction } from '@reduxjs/toolkit';",
+            "",
+            "import type { RootState } from '@/middleware/redux/redux.store';",
+            "",
+            "interface [ModuleName]State {",
+            "  value: number;",
+            "}",
+            "",
+            "const initialState: [ModuleName]State = {",
+            "  value: 0,",
+            "};",
+            "",
+            "export const [moduleName] = createSlice({",
+            "  name: '[moduleName]',",
+            "  initialState,",
+            "  reducers: {",
+            "    increment: state => {",
+            "      state.value += 1;",
+            "    },",
+            "    decrement: state => {",
+            "      state.value -= 1;",
+            "    },",
+            "    incrementByAmount: (state, action: PayloadAction<number>) => {",
+            "      state.value += action.payload;",
+            "    },",
+            "  },",
+            "});",
+            "",
+            "export const { increment, decrement, incrementByAmount } = [moduleName].actions;",
+            "",
+            "export const selectCount = (state: RootState) => state.[moduleName].value;",
+            "",
+            "export default [moduleName].reducer;",
+            ""
+          ]
+        }
+      ]
+    }
+  ],
+  "modify": [
+    {
+      "filePath": "src/middleware/redux/redux.store.ts",
+      "lines": [
+        {
+          "hook": "// IMPORT_NEW_SLICE",
+          "appendLines": [
+            "import [moduleName] from '@/features/[moduleName]/[moduleName].slice';"
+          ]
+        },
+        {
+          "hook": "// DECLARE_NEW_SLICE",
+          "appendLines": ["[moduleName],"]
+        }
+      ]
+    }
+  ]
+}

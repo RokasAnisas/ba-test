@@ -1,0 +1,23 @@
+@use 'src/styles/res' as res;
+
+.button {
+  @include res.transition([background-color]);
+
+  display: flex;
+  justify-content: center;
+  background-color: res.color('accent');
+  border: 0;
+  border-radius: 10px;
+  min-width: 4rem;
+  padding: 10px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: res.color('accent-light');
+  }
+
+  &__label {
+    color: #fff;
+    font-weight: 700;
+  }
+}
