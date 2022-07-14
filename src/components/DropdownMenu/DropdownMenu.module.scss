@@ -2,9 +2,10 @@
 
 .dropdown-menu {
   display: flex;
+  position: relative;
 
   &__launcher {
-    @include res.transition([opacity transform]);
+    @include res.transition([opacity transform color background-color]);
 
     align-items: center;
     background-color: transparent;
@@ -24,5 +25,37 @@
     &:active {
       transform: scale(0.95);
     }
+
+    &.is-open {
+      color: res.color('background');
+      background-color: res.color('foreground');
+    }
+  }
+
+  &__menu {
+    @include res.transition([opacity transform visibility]);
+
+    background-color: res.color('background');
+    box-shadow: res.shadow('primary');
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    transform: translateY(0);
+    visibility: hidden;
+    width: 12rem;
+
+    &.is-open {
+      opacity: 1;
+      transform: translateY(res.spacing('s'));
+      visibility: visible;
+    }
+  }
+
+  &__menu-item {
+    list-style: none;
+    padding: res.spacing('s');
   }
 }
