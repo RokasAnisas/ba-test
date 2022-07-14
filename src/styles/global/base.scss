@@ -5,4 +5,5 @@ body {
 
   color: res.color('foreground');
   background-color: res.color('background');
+  font-family: res.font-family('primary');
 }

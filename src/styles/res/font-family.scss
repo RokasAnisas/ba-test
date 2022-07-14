@@ -1,0 +1,9 @@
+@function font-family($_key) {
+  $font-family--prmary: 'Rubik', sans-serif;
+
+  $font-family-map: (
+    'primary': $font-family--prmary,
+  );
+
+  @return map-get($font-family-map, $_key);
+}

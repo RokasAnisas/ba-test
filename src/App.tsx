@@ -4,7 +4,7 @@ import { Example } from '@/features/example/components/Example';
 import { useApplyTheme } from '@/features/themeSwitcher/themeSwitcher.hooks';
 import { ThemeSwitcherButton } from '@/features/themeSwitcher/components/ThemeSwitcherButton';
 
-const App: FC = () => {
+export const App: FC = () => {
   useApplyTheme();
 
   return (
@@ -14,5 +14,3 @@ const App: FC = () => {
     </>
   );
 };
-
-export default App;

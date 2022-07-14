@@ -11,7 +11,7 @@ interface ThemeSwitcherState {
 
 // Define the initial state using that type
 const initialState: ThemeSwitcherState = {
-  theme: 'light',
+  theme: 'dark',
 };
 
 export const themeSwitcherSlice = createSlice({
