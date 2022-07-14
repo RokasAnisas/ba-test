@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import themeSwitcher from '@/features/themeSwitcher/themeSwitcher.slice';
+import imageFeed from '@/features/imageFeed/imageFeed.slice';
 // IMPORT_NEW_SLICE
 
 export const store = configureStore({
   reducer: {
     themeSwitcher,
+    imageFeed,
     // DECLARE_NEW_SLICE
   },
 });
