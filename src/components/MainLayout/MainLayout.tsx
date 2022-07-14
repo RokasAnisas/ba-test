@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import { Logo } from '@/components/Logo';
 import { InfoText } from '@/components/InfoText';
+import { Button } from '@/components/Button';
 import { ThemeSwitcherButton } from '@/features/themeSwitcher/components/ThemeSwitcherButton';
 
 import { MainLayoutProps } from './MainLayout.props';
@@ -23,6 +24,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
           <InfoText>
             Press <strong>spacebar</strong> to shuffle or
           </InfoText>
+          <Button>Click here</Button>
           <ThemeSwitcherButton />
         </div>
       </header>
