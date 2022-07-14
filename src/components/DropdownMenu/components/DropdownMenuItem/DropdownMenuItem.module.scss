@@ -2,6 +2,8 @@
 
 .dropdown-menu-item {
   display: flex;
+  flex-direction: column;
+  gap: res.spacing('s');
   list-style: none;
   padding: res.spacing('s') 0;
 
