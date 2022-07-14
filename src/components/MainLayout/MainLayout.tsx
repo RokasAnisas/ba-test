@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import classNames from 'classnames/bind';
 
+import { Logo } from '@/components/Logo';
+
 import { MainLayoutProps } from './MainLayout.props';
 
 import styles from './MainLayout.module.scss';
@@ -11,7 +13,9 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <div className={cx(className)}>
-      <header className={cx(`${className}__header`)}>Header</header>
+      <header className={cx(`${className}__header`)}>
+        <Logo />
+      </header>
       <main className={cx(`${className}__body`)}>{children}</main>
     </div>
   );

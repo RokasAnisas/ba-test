@@ -1,0 +1,10 @@
+@use 'src/styles/res' as res;
+
+.logo {
+  display: flex;
+  font-weight: 700;
+
+  &__label {
+    color: res.color('foreground');
+  }
+}
