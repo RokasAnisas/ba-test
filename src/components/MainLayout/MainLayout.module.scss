@@ -1,0 +1,18 @@
+@use 'src/styles/res' as res;
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    @include res.transition([color background-color], res.duration('smooth'));
+
+    padding: res.spacing('s') res.spacing('l');
+    background-color: res.color('background');
+    box-shadow: res.shadow('primary');
+  }
+
+  &__body {
+    padding: res.spacing('l');
+  }
+}
