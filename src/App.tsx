@@ -1,17 +1,15 @@
 import { FC } from 'react';
 
-import { Example } from '@/features/example/components/Example';
 import { useApplyTheme } from '@/features/themeSwitcher/themeSwitcher.hooks';
-import { ThemeSwitcherButton } from '@/features/themeSwitcher/components/ThemeSwitcherButton';
 import { MainLayout } from '@/components/MainLayout';
+import { GridImage } from '@/components/GridImage';
 
 export const App: FC = () => {
   useApplyTheme();
 
   return (
     <MainLayout>
-      <ThemeSwitcherButton />
-      <Example />
+      <GridImage src="https://picsum.photos/200/300" />
     </MainLayout>
   );
 };

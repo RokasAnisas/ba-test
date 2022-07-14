@@ -1,0 +1,9 @@
+@use 'src/styles/res' as res;
+
+.grid-image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 10rem;
+  min-width: 10rem;
+}

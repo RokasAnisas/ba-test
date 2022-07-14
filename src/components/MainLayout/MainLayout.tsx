@@ -2,6 +2,7 @@ import { FC } from 'react';
 import classNames from 'classnames/bind';
 
 import { Logo } from '@/components/Logo';
+import { ThemeSwitcherButton } from '@/features/themeSwitcher/components/ThemeSwitcherButton';
 
 import { MainLayoutProps } from './MainLayout.props';
 
@@ -15,6 +16,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
     <div className={cx(className)}>
       <header className={cx(`${className}__header`)}>
         <Logo />
+        <ThemeSwitcherButton />
       </header>
       <main className={cx(`${className}__body`)}>{children}</main>
     </div>
