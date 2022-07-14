@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import { GridImage } from '@/components/GridImage';
@@ -21,11 +21,28 @@ const images = [
 
 export const ImageFeed: FC<ImageFeedProps> = () => {
   const className = 'image-feed';
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+
+  const toggleItem = (index: number) => {
+    if (selectedItems.includes(index)) {
+      setSelectedItems(state => state.filter(item => item !== index));
+
+      return;
+    }
+    setSelectedItems(state => [...state, index]);
+  };
 
   return (
     <div className={cx(className)}>
       {images.map((item, i) => {
-        return <GridImage key={i} src={item} />;
+        return (
+          <GridImage
+            key={i}
+            src={item}
+            onClick={() => toggleItem(i)}
+            isSelected={selectedItems.includes(i)}
+          />
+        );
       })}
     </div>
   );
