@@ -4,8 +4,8 @@ import classNames from 'classnames/bind';
 import { Logo } from '@/components/Logo';
 import { InfoText } from '@/components/InfoText';
 import { Button } from '@/components/Button';
-import { ThemeSwitcherButton } from '@/features/themeSwitcher/components/ThemeSwitcherButton';
 import { en } from '@/translations/en';
+import { DropdownMenu } from '@/components/DropdownMenu';
 
 import { MainLayoutProps } from './MainLayout.props';
 
@@ -24,7 +24,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
         <div className={cx(`${className}__header-container`, '-right')}>
           <InfoText description={en.pressSpaceToShuffleOr} />
           <Button>{en.clickHere}</Button>
-          <ThemeSwitcherButton />
+          <DropdownMenu />
         </div>
       </header>
       <main className={cx(`${className}__body`)}>{children}</main>

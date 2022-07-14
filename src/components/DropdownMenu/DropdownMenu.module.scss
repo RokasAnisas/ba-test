@@ -1,0 +1,28 @@
+@use 'src/styles/res' as res;
+
+.dropdown-menu {
+  display: flex;
+
+  &__launcher {
+    @include res.transition([opacity transform]);
+
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    border-radius: res.radius('primary');
+    display: flex;
+    justify-content: center;
+    font-size: res.font-size('m');
+    color: res.color('foreground');
+    background-color: res.color('neutral');
+    padding: res.spacing('s');
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
