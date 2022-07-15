@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { save, load } from 'redux-localstorage-simple';
 
 import themeSwitcher from '@/features/themeSwitcher/themeSwitcher.slice';
 import imageFeed from '@/features/imageFeed/imageFeed.slice';
@@ -10,6 +11,8 @@ export const store = configureStore({
     imageFeed,
     // DECLARE_NEW_SLICE
   },
+  middleware: [save()],
+  preloadedState: load(),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

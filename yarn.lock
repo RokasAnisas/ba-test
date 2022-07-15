@@ -3781,6 +3781,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"merge@npm:2.1.1":
+  version: 2.1.1
+  resolution: "merge@npm:2.1.1"
+  checksum: 9c36b0e25aa53b3f7305d7cf0f330397f1142cf311802b681e5619f12e986a790019b8246c1c0df21701c8652449f9046b0129551030097ef563d1958c823249
+  languageName: node
+  linkType: hard
+
 "micromatch@npm:^4.0.4":
   version: 4.0.5
   resolution: "micromatch@npm:4.0.5"
@@ -4505,6 +4512,7 @@ __metadata:
     react-icons: ^4.4.0
     react-query: beta
     react-redux: ^8.0.2
+    redux-localstorage-simple: ^2.5.1
     sass: ^1.53.0
     ts-node: ^10.9.1
     typescript: 4.7.4
@@ -4650,6 +4658,15 @@ __metadata:
     indent-string: ^4.0.0
     strip-indent: ^3.0.0
   checksum: fa1ef20404a2d399235e83cc80bd55a956642e37dd197b4b612ba7327bf87fa32745aeb4a1634b2bab25467164ab4ed9c15be2c307923dd08b0fe7c52431ae6b
+  languageName: node
+  linkType: hard
+
+"redux-localstorage-simple@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "redux-localstorage-simple@npm:2.5.1"
+  dependencies:
+    merge: 2.1.1
+  checksum: be95d584581eb6c0af9d0dc922565aee32826778ea839c4341e41b46c54c1d7b947c52d6289be3f1fe74fb020912174e35875834929cc77d8b00a25be288bbfc
   languageName: node
   linkType: hard
 
