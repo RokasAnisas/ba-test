@@ -15,6 +15,7 @@ export const Button: FC<ButtonProps> = ({ children, onClick, loading }) => {
       className={cx(className, { 'is-loading': loading })}
       onClick={onClick}
       disabled={loading}
+      aria-busy={loading}
     >
       <span className={cx(`${className}__label`)}>{children}</span>
       <div className={cx(`${className}__loader`, { 'is-loading': loading })}>
