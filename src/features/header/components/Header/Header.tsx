@@ -12,6 +12,11 @@ import {
   selectTheme,
   setTheme,
 } from '@/features/themeSwitcher/themeSwitcher.slice';
+import {
+  getNewImages,
+  selectGridSize,
+  setGridSize,
+} from '@/features/imageFeed/imageFeed.slice';
 
 import { HeaderProps } from './Header.props';
 
@@ -22,6 +27,7 @@ export const Header: FC<HeaderProps> = () => {
   const className = 'header';
   const dispatch = useAppDispatch();
   const currentTheme = useAppSelector(selectTheme);
+  const gridSize = useAppSelector(selectGridSize);
 
   return (
     <header className={cx(className)}>
@@ -30,7 +36,7 @@ export const Header: FC<HeaderProps> = () => {
       </div>
       <div className={cx(`${className}__container`, '-right')}>
         <InfoText description={en.pressSpaceToShuffleOr} />
-        <Button>{en.clickHere}</Button>
+        <Button onClick={() => dispatch(getNewImages())}>{en.clickHere}</Button>
         <DropdownMenu
           items={[
             {
@@ -63,13 +69,24 @@ export const Header: FC<HeaderProps> = () => {
                   options={[
                     {
                       label: '8',
+                      active: gridSize === 8,
+                      onClick() {
+                        dispatch(setGridSize(8));
+                      },
                     },
                     {
                       label: '12',
-                      active: true,
+                      active: gridSize === 12,
+                      onClick() {
+                        dispatch(setGridSize(12));
+                      },
                     },
                     {
                       label: '16',
+                      active: gridSize === 16,
+                      onClick() {
+                        dispatch(setGridSize(16));
+                      },
                     },
                   ]}
                 />

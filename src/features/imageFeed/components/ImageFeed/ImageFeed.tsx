@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 export const ImageFeed: FC<ImageFeedProps> = () => {
   const className = 'image-feed';
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
-  const { data } = useGetTrendingGifs(8, 4);
+  const { data } = useGetTrendingGifs();
 
   const images = data?.data;
 
