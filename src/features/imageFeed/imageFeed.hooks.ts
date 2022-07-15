@@ -10,6 +10,7 @@ export const useUpdateOnSpace = () => {
   useEffect(() => {
     const callback = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
+        event.preventDefault();
         dispatch(getNewImages());
       }
     };

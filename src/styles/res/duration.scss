@@ -2,6 +2,7 @@
   $duration-map: (
     'cta': 0.15s,
     'smooth': 0.3s,
+    'loader': 1s
   );
 
   @return map-get($duration-map, $_key);

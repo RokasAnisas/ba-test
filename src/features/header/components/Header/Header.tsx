@@ -20,6 +20,7 @@ import {
 } from '@/features/imageFeed/imageFeed.slice';
 import { ImageGridSize } from '@/features/imageFeed/imageFeed.enum';
 import { confirmDialog } from '@/features/utility/confirmDialog';
+import { useGetTrendingGifs } from '@/features/imageFeed/imageFeed.query';
 
 import { HeaderProps } from './Header.props';
 
@@ -32,6 +33,7 @@ export const Header: FC<HeaderProps> = () => {
   const currentTheme = useAppSelector(selectTheme);
   const gridSize = useAppSelector(selectGridSize);
   const lockedCells = useAppSelector(selectLockedCells);
+  const { isFetching } = useGetTrendingGifs();
 
   const GRID_OPTIONS = [ImageGridSize.s, ImageGridSize.m, ImageGridSize.l];
 
@@ -42,7 +44,9 @@ export const Header: FC<HeaderProps> = () => {
       </div>
       <div className={cx(`${className}__container`, '-right')}>
         <InfoText description={en.pressSpaceToShuffleOr} />
-        <Button onClick={() => dispatch(getNewImages())}>{en.clickHere}</Button>
+        <Button onClick={() => dispatch(getNewImages())} loading={isFetching}>
+          {en.clickHere}
+        </Button>
         <DropdownMenu
           items={[
             {
