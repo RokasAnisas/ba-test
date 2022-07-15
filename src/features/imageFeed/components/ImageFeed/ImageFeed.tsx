@@ -15,7 +15,6 @@ export const ImageFeed: FC<ImageFeedProps> = () => {
   const { data } = useGetTrendingGifs(8, 4);
 
   const images = data?.data;
-  console.log({ data });
 
   const toggleItem = (index: number) => {
     if (selectedItems.includes(index)) {
