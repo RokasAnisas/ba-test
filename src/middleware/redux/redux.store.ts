@@ -2,14 +2,18 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import themeSwitcher from '@/features/themeSwitcher/themeSwitcher.slice';
 import imageFeed from '@/features/imageFeed/imageFeed.slice';
+import { imageFeedQuery } from '@/features/imageFeed/imageFeed.query';
 // IMPORT_NEW_SLICE
 
 export const store = configureStore({
   reducer: {
     themeSwitcher,
     imageFeed,
+    imageFeedQuery: imageFeedQuery.reducer,
     // DECLARE_NEW_SLICE
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat([imageFeedQuery.middleware]),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
