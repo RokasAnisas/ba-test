@@ -12,6 +12,15 @@ import {
   selectTheme,
   setTheme,
 } from '@/features/themeSwitcher/themeSwitcher.slice';
+import {
+  getNewImages,
+  selectGridSize,
+  selectLockedCells,
+  setGridSize,
+} from '@/features/imageFeed/imageFeed.slice';
+import { ImageGridSize } from '@/features/imageFeed/imageFeed.enum';
+import { confirmDialog } from '@/features/utility/confirmDialog';
+import { useGetTrendingGifs } from '@/features/imageFeed/imageFeed.query';
 
 import { HeaderProps } from './Header.props';
 
@@ -22,6 +31,11 @@ export const Header: FC<HeaderProps> = () => {
   const className = 'header';
   const dispatch = useAppDispatch();
   const currentTheme = useAppSelector(selectTheme);
+  const gridSize = useAppSelector(selectGridSize);
+  const lockedCells = useAppSelector(selectLockedCells);
+  const { isFetching } = useGetTrendingGifs();
+
+  const GRID_OPTIONS = [ImageGridSize.s, ImageGridSize.m, ImageGridSize.l];
 
   return (
     <header className={cx(className)}>
@@ -30,7 +44,9 @@ export const Header: FC<HeaderProps> = () => {
       </div>
       <div className={cx(`${className}__container`, '-right')}>
         <InfoText description={en.pressSpaceToShuffleOr} />
-        <Button>{en.clickHere}</Button>
+        <Button onClick={() => dispatch(getNewImages())} loading={isFetching}>
+          {en.clickHere}
+        </Button>
         <DropdownMenu
           items={[
             {
@@ -60,18 +76,19 @@ export const Header: FC<HeaderProps> = () => {
               label: 'Grid size',
               action: (
                 <OptionToggle
-                  options={[
-                    {
-                      label: '8',
+                  options={GRID_OPTIONS.map(option => ({
+                    label: `${option}`,
+                    active: gridSize === option,
+                    onClick() {
+                      confirmDialog({
+                        message: en.lockedCellsWillBeLost,
+                        callback() {
+                          dispatch(setGridSize(option));
+                        },
+                        disabled: lockedCells.length === 0,
+                      });
                     },
-                    {
-                      label: '12',
-                      active: true,
-                    },
-                    {
-                      label: '16',
-                    },
-                  ]}
+                  }))}
                 />
               ),
             },

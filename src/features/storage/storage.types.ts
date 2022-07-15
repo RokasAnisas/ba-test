@@ -1,1 +1,1 @@
-export type StorageKeys = 'theme';
+export type StorageKeys = 'app_theme' | 'app_gridSize' | 'app_offset';

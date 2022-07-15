@@ -3,13 +3,17 @@
 .main-layout {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 
   &__header {
     display: flex;
+    z-index: 1;
   }
 
-
   &__body {
+    flex-grow: 1;
+    overflow-y: auto;
     padding: res.spacing('l');
   }
 }

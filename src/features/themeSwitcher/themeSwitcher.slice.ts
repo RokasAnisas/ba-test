@@ -10,7 +10,7 @@ interface ThemeSwitcherState {
 }
 
 const initialState: ThemeSwitcherState = {
-  theme: (storage.get('theme') as Theme) ?? 'dark',
+  theme: (storage.get('app_theme') as Theme) ?? 'dark',
 };
 
 export const themeSwitcherSlice = createSlice({
@@ -19,7 +19,7 @@ export const themeSwitcherSlice = createSlice({
   reducers: {
     setTheme: (state, action: PayloadAction<Theme>) => {
       state.theme = action.payload;
-      storage.set('theme', action.payload);
+      storage.set('app_theme', action.payload);
     },
   },
 });

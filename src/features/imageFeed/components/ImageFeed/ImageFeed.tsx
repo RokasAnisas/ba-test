@@ -1,46 +1,51 @@
-import { FC, useState } from 'react';
+import { FC, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
+import { useAppDispatch, useAppSelector } from '@/middleware/redux/redux.hooks';
 import { GridImage } from '@/components/GridImage';
 
 import { ImageFeedProps } from './ImageFeed.props';
+import { useGetTrendingGifs } from '../../imageFeed.query';
+import {
+  selectActiveGrid,
+  selectLockedCells,
+  toggleLockCell,
+  updateGrid,
+} from '../../imageFeed.slice';
+import { useUpdateOnSpace } from '../../imageFeed.hooks';
+import { ErrorImage } from '../ErrorImage';
 
 import styles from './ImageFeed.module.scss';
 const cx = classNames.bind(styles);
 
-const images = [
-  'https://picsum.photos/id/237/200/300',
-  'https://picsum.photos/id/236/200/300',
-  'https://picsum.photos/id/235/200/300',
-  'https://picsum.photos/id/234/200/300',
-  'https://picsum.photos/id/233/200/300',
-  'https://picsum.photos/id/232/200/300',
-  'https://picsum.photos/id/231/200/300',
-  'https://picsum.photos/id/230/200/300',
-];
-
 export const ImageFeed: FC<ImageFeedProps> = () => {
   const className = 'image-feed';
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const { data, isError } = useGetTrendingGifs();
+  const activeGrid = useAppSelector(selectActiveGrid);
+  const lockedCells = useAppSelector(selectLockedCells);
+  const dispatch = useAppDispatch();
+  useUpdateOnSpace();
 
-  const toggleItem = (index: number) => {
-    if (selectedItems.includes(index)) {
-      setSelectedItems(state => state.filter(item => item !== index));
+  useEffect(() => {
+    if (!data?.data) return;
 
-      return;
-    }
-    setSelectedItems(state => [...state, index]);
-  };
+    dispatch(updateGrid(data.data));
+  }, [data, dispatch]);
+
+  if (isError) {
+    return <ErrorImage />;
+  }
 
   return (
     <div className={cx(className)}>
-      {images.map((item, i) => {
+      {activeGrid?.map((item, i) => {
         return (
           <GridImage
             key={i}
-            src={item}
-            onClick={() => toggleItem(i)}
-            isSelected={selectedItems.includes(i)}
+            src={item.src}
+            alt={item.alt}
+            onClick={() => dispatch(toggleLockCell(i))}
+            isSelected={lockedCells.includes(i)}
           />
         );
       })}
