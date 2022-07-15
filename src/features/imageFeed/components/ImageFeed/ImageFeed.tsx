@@ -12,6 +12,7 @@ import {
   toggleLockCell,
   updateGrid,
 } from '../../imageFeed.slice';
+import { useUpdateOnSpace } from '../../imageFeed.hooks';
 
 import styles from './ImageFeed.module.scss';
 const cx = classNames.bind(styles);
@@ -22,6 +23,7 @@ export const ImageFeed: FC<ImageFeedProps> = () => {
   const activeGrid = useAppSelector(selectActiveGrid);
   const lockedCells = useAppSelector(selectLockedCells);
   const dispatch = useAppDispatch();
+  useUpdateOnSpace();
 
   useEffect(() => {
     if (!data?.data) return;
