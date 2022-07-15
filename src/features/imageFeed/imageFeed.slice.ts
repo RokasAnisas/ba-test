@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '@/middleware/redux/redux.store';
 import { randomInt } from '@/features/utility/randomInt';
+import { storage } from '@/features/storage/storage.functions';
 
 interface ImageFeedState {
   gridSize: number;
@@ -9,8 +10,8 @@ interface ImageFeedState {
 }
 
 const initialState: ImageFeedState = {
-  gridSize: 12,
-  offset: 0,
+  gridSize: Number(storage.get('app_gridSize')) || 12,
+  offset: Number(storage.get('app_offset')) || 0,
 };
 
 export const imageFeed = createSlice({
@@ -19,9 +20,12 @@ export const imageFeed = createSlice({
   reducers: {
     setGridSize: (state, action: PayloadAction<number>) => {
       state.gridSize = action.payload;
+      storage.set('app_gridSize', `${action.payload}`);
     },
     getNewImages: state => {
-      state.offset = randomInt(0, 100);
+      const randInt = randomInt(0, 1000);
+      state.offset = randInt;
+      storage.set('app_offset', `${randInt}`);
     },
   },
 });
