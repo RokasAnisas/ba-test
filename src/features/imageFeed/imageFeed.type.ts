@@ -1,3 +1,8 @@
+export interface RandomGif {
+  data: GifItem;
+  meta: GifMeta;
+}
+
 export interface TrendingGifs {
   data: GifItem[];
   pagination: GifPagination;

@@ -3,31 +3,25 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '@/middleware/redux/redux.store';
 
 interface ImageFeedState {
-  value: number;
+  gridSize: number;
 }
 
 const initialState: ImageFeedState = {
-  value: 0,
+  gridSize: 12,
 };
 
 export const imageFeed = createSlice({
   name: 'imageFeed',
   initialState,
   reducers: {
-    increment: state => {
-      state.value += 1;
-    },
-    decrement: state => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    setGridSize: (state, action: PayloadAction<number>) => {
+      state.gridSize = action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = imageFeed.actions;
+export const { setGridSize } = imageFeed.actions;
 
-export const selectCount = (state: RootState) => state.imageFeed.value;
+export const selectGridSize = (state: RootState) => state.imageFeed.gridSize;
 
 export default imageFeed.reducer;
