@@ -22,4 +22,8 @@
       text-decoration: underline;
     }
   }
+
+  @include res.if-portrait {
+    display: none;
+  }
 }
