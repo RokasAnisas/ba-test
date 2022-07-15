@@ -32,6 +32,7 @@ export const ImageFeed: FC<ImageFeedProps> = () => {
           <GridImage
             key={i}
             src={item?.images?.downsized?.url}
+            alt={item.title}
             onClick={() => toggleItem(i)}
             isSelected={selectedItems.includes(i)}
           />
