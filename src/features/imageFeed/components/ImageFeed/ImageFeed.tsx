@@ -6,7 +6,12 @@ import { GridImage } from '@/components/GridImage';
 
 import { ImageFeedProps } from './ImageFeed.props';
 import { useGetTrendingGifs } from '../../imageFeed.query';
-import { selectActiveGrid, updateGrid } from '../../imageFeed.slice';
+import {
+  selectActiveGrid,
+  selectLockedCells,
+  toggleLockCell,
+  updateGrid,
+} from '../../imageFeed.slice';
 
 import styles from './ImageFeed.module.scss';
 const cx = classNames.bind(styles);
@@ -15,6 +20,7 @@ export const ImageFeed: FC<ImageFeedProps> = () => {
   const className = 'image-feed';
   const { data } = useGetTrendingGifs();
   const activeGrid = useAppSelector(selectActiveGrid);
+  const lockedCells = useAppSelector(selectLockedCells);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -26,7 +32,15 @@ export const ImageFeed: FC<ImageFeedProps> = () => {
   return (
     <div className={cx(className)}>
       {activeGrid?.map((item, i) => {
-        return <GridImage key={i} src={item.src} alt={item.alt} />;
+        return (
+          <GridImage
+            key={i}
+            src={item.src}
+            alt={item.alt}
+            onClick={() => dispatch(toggleLockCell(i))}
+            isSelected={lockedCells.includes(i)}
+          />
+        );
       })}
     </div>
   );

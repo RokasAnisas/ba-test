@@ -30,6 +30,7 @@ export const imageFeed = createSlice({
   reducers: {
     setGridSize: (state, action: PayloadAction<number>) => {
       state.gridSize = action.payload;
+      state.lockedCells = [];
       storage.set('app_gridSize', `${action.payload}`);
     },
     getNewImages: state => {
@@ -38,16 +39,31 @@ export const imageFeed = createSlice({
       storage.set('app_offset', `${randInt}`);
     },
     updateGrid: (state, action: PayloadAction<GifItem[]>) => {
-      const mappedGifs = action.payload.map(item => ({
-        src: item.images.downsized.url,
-        alt: item.title,
-      }));
+      const mappedGifs = action.payload.map((item, i) =>
+        state.lockedCells.includes(i)
+          ? state.activeGrid[i]
+          : {
+              src: item.images.downsized.url,
+              alt: item.title,
+            }
+      );
       state.activeGrid = mappedGifs;
+    },
+    toggleLockCell: (state, action: PayloadAction<number>) => {
+      if (state.lockedCells.includes(action.payload)) {
+        state.lockedCells = state.lockedCells.filter(
+          item => item !== action.payload
+        );
+
+        return;
+      }
+      state.lockedCells = [...state.lockedCells, action.payload];
     },
   },
 });
 
-export const { setGridSize, getNewImages, updateGrid } = imageFeed.actions;
+export const { setGridSize, getNewImages, updateGrid, toggleLockCell } =
+  imageFeed.actions;
 
 export const selectGridSize = (state: RootState) => state.imageFeed.gridSize;
 export const selectOffset = (state: RootState) => state.imageFeed.offset;
