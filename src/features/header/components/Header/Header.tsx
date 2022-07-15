@@ -17,6 +17,7 @@ import {
   selectGridSize,
   setGridSize,
 } from '@/features/imageFeed/imageFeed.slice';
+import { ImageGridSize } from '@/features/imageFeed/imageFeed.enum';
 
 import { HeaderProps } from './Header.props';
 
@@ -68,24 +69,24 @@ export const Header: FC<HeaderProps> = () => {
                 <OptionToggle
                   options={[
                     {
-                      label: '8',
-                      active: gridSize === 8,
+                      label: `${ImageGridSize.s}`,
+                      active: gridSize === ImageGridSize.s,
                       onClick() {
-                        dispatch(setGridSize(8));
+                        dispatch(setGridSize(ImageGridSize.s));
                       },
                     },
                     {
-                      label: '12',
-                      active: gridSize === 12,
+                      label: `${ImageGridSize.m}`,
+                      active: gridSize === ImageGridSize.m,
                       onClick() {
-                        dispatch(setGridSize(12));
+                        dispatch(setGridSize(ImageGridSize.m));
                       },
                     },
                     {
-                      label: '16',
-                      active: gridSize === 16,
+                      label: `${ImageGridSize.l}`,
+                      active: gridSize === ImageGridSize.l,
                       onClick() {
-                        dispatch(setGridSize(16));
+                        dispatch(setGridSize(ImageGridSize.l));
                       },
                     },
                   ]}

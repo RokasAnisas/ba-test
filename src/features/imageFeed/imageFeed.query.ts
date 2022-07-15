@@ -5,6 +5,7 @@ import { useAppSelector } from '@/middleware/redux/redux.hooks';
 
 import { selectGridSize, selectOffset } from './imageFeed.slice';
 import { TrendingGifs } from './imageFeed.type';
+import { IMAGE_FEED_SETTINGS } from './imageFeed.settings';
 
 export const useGetTrendingGifs = () => {
   const gridSize = useAppSelector(selectGridSize);
@@ -22,7 +23,7 @@ export const useGetTrendingGifs = () => {
         },
       }),
     {
-      staleTime: 1000 * 60 * 60 * 24,
+      staleTime: IMAGE_FEED_SETTINGS.QUERY_STALE_TIME,
       select: response => response.data,
       keepPreviousData: true,
     }
