@@ -4,6 +4,7 @@
     's': 0.625rem,
     'm': 0.75rem,
     'l': 1.25rem,
+    'xl': 2rem,
   );
 
   @return map-get($spacing-map, $_key);

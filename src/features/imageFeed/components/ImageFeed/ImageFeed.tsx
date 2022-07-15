@@ -13,13 +13,14 @@ import {
   updateGrid,
 } from '../../imageFeed.slice';
 import { useUpdateOnSpace } from '../../imageFeed.hooks';
+import { ErrorImage } from '../ErrorImage';
 
 import styles from './ImageFeed.module.scss';
 const cx = classNames.bind(styles);
 
 export const ImageFeed: FC<ImageFeedProps> = () => {
   const className = 'image-feed';
-  const { data } = useGetTrendingGifs();
+  const { data, isError } = useGetTrendingGifs();
   const activeGrid = useAppSelector(selectActiveGrid);
   const lockedCells = useAppSelector(selectLockedCells);
   const dispatch = useAppDispatch();
@@ -30,6 +31,10 @@ export const ImageFeed: FC<ImageFeedProps> = () => {
 
     dispatch(updateGrid(data.data));
   }, [data, dispatch]);
+
+  if (isError) {
+    return <ErrorImage />;
+  }
 
   return (
     <div className={cx(className)}>
