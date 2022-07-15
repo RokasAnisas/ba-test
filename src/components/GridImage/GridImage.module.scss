@@ -12,8 +12,9 @@
   border: 4px solid transparent;
   background-color: transparent;
   overflow: hidden;
+  position: relative;
 
-  &.is-selected {
+  &.is-locked {
     border-color: res.color('accent');
   }
 
@@ -21,5 +22,29 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  &__description {
+    @include res.transition([opacity visibility transform]);
+
+    bottom: res.spacing('m');
+    display: flex;
+    left: res.spacing('m');
+    position: absolute;
+    color: res.color('foreground');
+    gap: res.spacing('s');
+    font-weight: 700;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(res.spacing('s'));
+  }
+
+  &.is-locked,
+  &:hover {
+    #{$_parent}__description {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

@@ -45,7 +45,7 @@ export const ImageFeed: FC<ImageFeedProps> = () => {
             src={item.src}
             alt={item.alt}
             onClick={() => dispatch(toggleLockCell(i))}
-            isSelected={lockedCells.includes(i)}
+            isLocked={lockedCells.includes(i)}
           />
         );
       })}
