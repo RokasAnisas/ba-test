@@ -1,3 +1,8 @@
+export interface ImageGridItem {
+  alt: string;
+  src: string;
+}
+
 export interface RandomGif {
   data: GifItem;
   meta: GifMeta;

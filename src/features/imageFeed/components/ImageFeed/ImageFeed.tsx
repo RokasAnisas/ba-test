@@ -1,42 +1,32 @@
-import { FC, useState } from 'react';
+import { FC, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
+import { useAppDispatch, useAppSelector } from '@/middleware/redux/redux.hooks';
 import { GridImage } from '@/components/GridImage';
 
 import { ImageFeedProps } from './ImageFeed.props';
 import { useGetTrendingGifs } from '../../imageFeed.query';
+import { selectActiveGrid, updateGrid } from '../../imageFeed.slice';
 
 import styles from './ImageFeed.module.scss';
 const cx = classNames.bind(styles);
 
 export const ImageFeed: FC<ImageFeedProps> = () => {
   const className = 'image-feed';
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const { data } = useGetTrendingGifs();
+  const activeGrid = useAppSelector(selectActiveGrid);
+  const dispatch = useAppDispatch();
 
-  const images = data?.data;
+  useEffect(() => {
+    if (!data?.data) return;
 
-  const toggleItem = (index: number) => {
-    if (selectedItems.includes(index)) {
-      setSelectedItems(state => state.filter(item => item !== index));
-
-      return;
-    }
-    setSelectedItems(state => [...state, index]);
-  };
+    dispatch(updateGrid(data.data));
+  }, [data, dispatch]);
 
   return (
     <div className={cx(className)}>
-      {images?.map((item, i) => {
-        return (
-          <GridImage
-            key={i}
-            src={item?.images?.downsized?.url}
-            alt={item.title}
-            onClick={() => toggleItem(i)}
-            isSelected={selectedItems.includes(i)}
-          />
-        );
+      {activeGrid?.map((item, i) => {
+        return <GridImage key={i} src={item.src} alt={item.alt} />;
       })}
     </div>
   );

@@ -24,7 +24,14 @@ export const useGetTrendingGifs = () => {
       }),
     {
       staleTime: IMAGE_FEED_SETTINGS.QUERY_STALE_TIME,
-      select: response => response.data,
+      select: response => ({
+        ...response.data,
+        data: response.data.data.sort(
+          (a, b) =>
+            new Date(a.import_datetime).getTime() -
+            new Date(b.import_datetime).getTime()
+        ),
+      }),
       keepPreviousData: true,
     }
   );
