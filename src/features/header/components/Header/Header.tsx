@@ -15,9 +15,11 @@ import {
 import {
   getNewImages,
   selectGridSize,
+  selectLockedCells,
   setGridSize,
 } from '@/features/imageFeed/imageFeed.slice';
 import { ImageGridSize } from '@/features/imageFeed/imageFeed.enum';
+import { confirmDialog } from '@/features/utility/confirmDialog';
 
 import { HeaderProps } from './Header.props';
 
@@ -29,6 +31,9 @@ export const Header: FC<HeaderProps> = () => {
   const dispatch = useAppDispatch();
   const currentTheme = useAppSelector(selectTheme);
   const gridSize = useAppSelector(selectGridSize);
+  const lockedCells = useAppSelector(selectLockedCells);
+
+  const GRID_OPTIONS = [ImageGridSize.s, ImageGridSize.m, ImageGridSize.l];
 
   return (
     <header className={cx(className)}>
@@ -67,29 +72,19 @@ export const Header: FC<HeaderProps> = () => {
               label: 'Grid size',
               action: (
                 <OptionToggle
-                  options={[
-                    {
-                      label: `${ImageGridSize.s}`,
-                      active: gridSize === ImageGridSize.s,
-                      onClick() {
-                        dispatch(setGridSize(ImageGridSize.s));
-                      },
+                  options={GRID_OPTIONS.map(option => ({
+                    label: `${option}`,
+                    active: gridSize === option,
+                    onClick() {
+                      confirmDialog({
+                        message: en.lockedCellsWillBeLost,
+                        callback() {
+                          dispatch(setGridSize(option));
+                        },
+                        disabled: lockedCells.length === 0,
+                      });
                     },
-                    {
-                      label: `${ImageGridSize.m}`,
-                      active: gridSize === ImageGridSize.m,
-                      onClick() {
-                        dispatch(setGridSize(ImageGridSize.m));
-                      },
-                    },
-                    {
-                      label: `${ImageGridSize.l}`,
-                      active: gridSize === ImageGridSize.l,
-                      onClick() {
-                        dispatch(setGridSize(ImageGridSize.l));
-                      },
-                    },
-                  ]}
+                  }))}
                 />
               ),
             },
