@@ -27,16 +27,67 @@
   &__description {
     @include res.transition([opacity visibility transform]);
 
-    bottom: res.spacing('m');
-    display: flex;
-    left: res.spacing('m');
-    position: absolute;
+    bottom: 0;
     color: res.color('foreground');
-    gap: res.spacing('s');
+    display: flex;
     font-weight: 700;
+    gap: res.spacing('s');
+    left: 0;
+    opacity: 0;
+    padding: res.spacing('m');
+    position: absolute;
+    transform: translateY(res.spacing('s'));
+    visibility: hidden;
+    width: 100%;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: -1;
+      background: linear-gradient(
+        0deg,
+        res.color('background'),
+        transparent
+      );
+    }
+  }
+
+  &__loader {
+    @include res.transition([opacity visibility]);
+
+    align-items: center;
+    background-color: res.color('neutral');
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(res.spacing('s'));
+  }
+
+  &__loader-icon {
+    animation: loader ease-in-out res.duration('loader') forwards infinite;
+    color: res.color('foreground');
+    font-size: res.font-size('l');
+
+    @keyframes loader {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
 
   &.is-locked,
@@ -45,6 +96,13 @@
       visibility: visible;
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  &.is-loading {
+    #{$_parent}__loader {
+      opacity: 1;
+      visibility: visible;
     }
   }
 }

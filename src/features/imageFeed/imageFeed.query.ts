@@ -32,7 +32,7 @@ export const useGetTrendingGifs = () => {
             new Date(b.import_datetime).getTime()
         ),
       }),
-      keepPreviousData: true,
+      // keepPreviousData: true,
     }
   );
 

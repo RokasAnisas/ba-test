@@ -3,4 +3,5 @@ export interface GridImageProps {
   alt?: string;
   onClick?: () => void;
   isLocked?: boolean;
+  isLoading?: boolean;
 }
