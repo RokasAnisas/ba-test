@@ -27,7 +27,9 @@ export const GridImage: FC<GridImageProps> = ({
       })}
       onClick={onClick}
     >
-      <img className={cx(`${className}__image`)} src={src} alt={alt} />
+      {!isLoading && (
+        <img className={cx(`${className}__image`)} src={src} alt={alt} />
+      )}
       <div className={cx(`${className}__description`)}>
         {isLocked ? <FaLock /> : <FaUnlock />}
         {isLocked ? en.clickToUnlock : en.clickToLock}
