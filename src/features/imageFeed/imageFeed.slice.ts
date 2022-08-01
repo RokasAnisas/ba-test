@@ -43,6 +43,17 @@ export const imageFeed = createSlice({
       );
       state.activeGrid = mappedGifs;
     },
+    clearUnlockedGifs: state => {
+      const mappedGifs = state.activeGrid.map((item, i) =>
+        state.lockedCells.includes(i)
+          ? state.activeGrid[i]
+          : {
+              src: '',
+              alt: '',
+            }
+      );
+      state.activeGrid = mappedGifs;
+    },
     toggleLockCell: (state, action: PayloadAction<number>) => {
       if (state.lockedCells.includes(action.payload)) {
         state.lockedCells = state.lockedCells.filter(
@@ -56,8 +67,13 @@ export const imageFeed = createSlice({
   },
 });
 
-export const { setGridSize, getNewImages, updateGrid, toggleLockCell } =
-  imageFeed.actions;
+export const {
+  setGridSize,
+  getNewImages,
+  updateGrid,
+  clearUnlockedGifs,
+  toggleLockCell,
+} = imageFeed.actions;
 
 export const selectGridSize = (state: RootState) => state.imageFeed.gridSize;
 export const selectOffset = (state: RootState) => state.imageFeed.offset;
